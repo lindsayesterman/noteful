@@ -7,9 +7,6 @@ Noteful is a productivity app allowing you to make your own organized to-do list
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-```npx create-react-app noteful
-```
-
 ## Usage
 
 Create your own notes, organize them into sections, delete when accomplished!
