@@ -7,9 +7,11 @@ import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import AddFolder from './addFolder.js';
 import NotePage from './notePage.js';
+import {getNotesForFolder, findNote, findFolder} from './notes-helpers';
 
 
 const  { folders, notes } = store
+
 
 class NoteApp extends Component{
     state = {
@@ -49,7 +51,9 @@ class NoteApp extends Component{
                   exact
                   path='/'
                   render={({ history }) => {
-                    return <FolderList folders={folders} />
+                    return <FolderList 
+                    folders={folders} 
+                    />
                   }}
                 />
                 <Route
@@ -81,6 +85,46 @@ class NoteApp extends Component{
             path='/note/:noteId'
             component={NotePage}
             /> 
+             {['/', '/folder/:folderId'].map(path => (
+                    <Route
+                        exact
+                        key={path}
+                        path={path}
+                        render={routeProps => {
+                            const {folderId} = routeProps.match.params;
+                            const notesForFolder = getNotesForFolder(
+                                notes,
+                                folderId
+                            );
+                            return (
+                                <NoteList
+                                    {...routeProps}
+                                    notes={notesForFolder}
+                                />
+                            );
+                        }}
+                    />
+                ))}
+                 {['/', '/folder/:folderId'].map(path => (
+                    <Route
+                        exact
+                        key={path}
+                        path={path}
+                        render={routeProps => {
+                            const {folderId} = routeProps.match.params;
+                            const notesForFolder = getNotesForFolder(
+                                notes,
+                                folderId
+                            );
+                            return (
+                                <FolderList
+                                    {...routeProps}
+                                    folders={folders}
+                                />
+                            );
+                        }}
+                    />
+                ))}
             </div>
         )
     }

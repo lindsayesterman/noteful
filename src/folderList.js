@@ -1,32 +1,29 @@
 import React from 'react';
-import Folder from './folder.js'
 import { Link } from 'react-router-dom';
-//import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-class FolderList extends React.Component {
-    static defaultProps = {
-      folders: []
-    };
 
-  render() {
-    const { folders } = this.props
+export default function FolderList (props){
       return (
         <section className='folder-list'>
           <ul>
-            {folders.map(folder =>
-              <Folder
-                key={folders.id}
-                {...folder}
-              />
-            )}
-          </ul>
+            {props.folders.map(folder =>
+                <li key={folder.id}>
+                <NavLink to={`/folder/${folder.id}`}>
+              {folder.name}
+              </NavLink>
+              </li>
+              )}
+            </ul>
           <Link to={'/addFolder'} className="add-note">
               Add Folder
               </Link>
         </section>
       );
     }
-  }
   
-  export default FolderList;
+FolderList.defaultProps = {
+  folders: []
+}
+  
   

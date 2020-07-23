@@ -8,6 +8,7 @@ class AddNote extends React.Component{
     
     render(){
         const { onClickCancel } = this.props
+
         return(
             <div>
                 <form>
