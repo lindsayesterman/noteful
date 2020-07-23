@@ -5,7 +5,7 @@ export default function Folder (props){
           <li className='folder'>
               <h3>{props.name}</h3>
               <button type="delete">
-                  Delete
+                  Remove
               </button>
             </li>
     )

@@ -6,7 +6,7 @@ export default function Note(props){
                 <h3>{props.name}</h3>
                 <p>{props.modified}</p>
                 <button type="delete">
-                    Delete
+                    Remove
                 </button>
             </li>
         )

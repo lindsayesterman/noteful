@@ -10,19 +10,18 @@ class NoteList extends React.Component {
 
     render() {
     const { notes } = this.props
-    console.log(notes)
       return (
         <section className='note-list'>
-          <Link to={'/'}>
           <ul>
             {notes.map(note =>
+             <Link to={`/note/${note.id}`}>
               <Note
-                key={notes.id}
+                key={note.id}
                 {...note}
               />
+              </Link>
             )}
-          </ul>
-          </Link>
+        </ul>
             <Link to={'/addNote'} className="add-note">
               Add Note
               </Link>
@@ -30,6 +29,6 @@ class NoteList extends React.Component {
       );
     }
   }
-  
+
   export default NoteList;
   

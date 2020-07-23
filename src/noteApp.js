@@ -6,6 +6,8 @@ import AddNote from './addNote.js'
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import AddFolder from './addFolder.js'
+import NotePage from './notePage.js'
+
 
 const  { folders, notes } = store
 class NoteApp extends Component{
@@ -69,9 +71,13 @@ class NoteApp extends Component{
                 path='/addFolder'
                 render={() => 
                 <AddFolder
-                onAddFolder={this.addFoldere}
+                onAddFolder={this.addFolder}
                 />}
                 />
+          <Route
+            path='/note/:noteId'
+            component={NotePage}
+            /> 
             </div>
         )
     }
