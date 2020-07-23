@@ -7,13 +7,18 @@ class AddFolder extends React.Component{
     };
     
     render(){
+        const { onClickCancel } = this.props
         return(
             <div>
                 <form>
                     <label for="folder-name">Folder Name</label>
                     <input id="folder-name" type="text"></input>
                 </form>
-                <button type="submit">Add Note</button>
+                <button type='button' 
+                onClick={onClickCancel}>
+                 Go back
+                 </button>                
+                 <button type="submit">Add Note</button>
             </div>
         )
     }

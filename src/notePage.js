@@ -9,7 +9,9 @@ export default function NotePage(props) {
        return(
            <div>
                 <h2>{note.name}</h2>
-                <p>{note.content}</p>
+                <p className="note-content">
+                    {note.content}
+                </p>
            </div>
        )
    }

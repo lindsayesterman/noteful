@@ -7,6 +7,7 @@ class AddNote extends React.Component{
     };
     
     render(){
+        const { onClickCancel } = this.props
         return(
             <div>
                 <form>
@@ -18,7 +19,11 @@ class AddNote extends React.Component{
                     <option>Folder</option>
                     </select>                   
                 </form>
-                <button type="submit">Add Note</button>
+                <button type='button' 
+                onClick={onClickCancel}>
+                 Go back
+                 </button>
+            <button type="submit">Add Note</button>
             </div>
         )
     }

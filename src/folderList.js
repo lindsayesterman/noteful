@@ -2,18 +2,17 @@ import React from 'react';
 import Folder from './folder.js'
 import folders from './store.js'
 import { Link } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 
-class NoteList extends React.Component {
+class FolderList extends React.Component {
     static defaultProps = {
-      folders,
+      folders: []
     };
 
-    render() {
- 
+  render() {
     const { folders } = this.props
       return (
         <section className='folder-list'>
-          <Link to={'/'}>
           <ul>
             {folders.map(folder =>
               <Folder
@@ -22,7 +21,6 @@ class NoteList extends React.Component {
               />
             )}
           </ul>
-          </Link>
           <Link to={'/addFolder'} className="add-note">
               Add Folder
               </Link>
@@ -31,5 +29,5 @@ class NoteList extends React.Component {
     }
   }
   
-  export default NoteList;
+  export default FolderList;
   

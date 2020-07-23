@@ -16,6 +16,7 @@ class NoteApp extends Component{
         folders
     };
 
+
     setNotes = notes => {
         this.setState({
           notes,
@@ -39,7 +40,7 @@ class NoteApp extends Component{
         const { notes, folders  } = this.state
         return(
             <div>
-              <header>
+               <header>
               <Link to={'/'}>
                 <h1>Noteful</h1>
                 </Link>
@@ -47,32 +48,34 @@ class NoteApp extends Component{
                 <Route
                   exact
                   path='/'
-                  render={() =>
-                    <FolderList
-                      folders={folders}
-                    />}
+                  render={({ history }) => {
+                    return <FolderList folders={folders} />
+                  }}
                 />
                 <Route
                   exact
                   path='/'
-                  render={() =>
-                    <NoteList
-                      notes={notes}
-                    />}
+                  render={({ history }) => {
+                    return <NoteList notes={notes} />
+                  }}
                 />
-                <Route 
-                path='/addNote'
-                render={() => 
-                <AddNote
-                onAddNote={this.addNote}
-                />}
+                <Route
+                  path='/addFolder'
+                  render={({ history }) => {
+                  return <AddFolder
+                  onAddFolder={this.addFolder}
+                  onClickCancel={() => history.push('/')}
+                   />
+                 }}
                 />
-                 <Route 
-                path='/addFolder'
-                render={() => 
-                <AddFolder
-                onAddFolder={this.addFolder}
-                />}
+                 <Route
+                  path='/addNote'
+                  render={({ history }) => {
+                  return <AddNote
+                  onAddNote={this.addNote}
+                  onClickCancel={() => history.push('/')}
+              />
+            }}
                 />
           <Route
             path='/note/:noteId'

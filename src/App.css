@@ -56,3 +56,12 @@ input, select{
   width:100%;
   margin:10px;
 }
+
+.note-content, h2{
+  display:block;
+  margin:0 auto;
+  width: 60%;
+  text-align:center;
+}
+
+
