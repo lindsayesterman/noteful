@@ -9,14 +9,14 @@ export default function FolderList (props){
         <section className='folder-list'>
           <ul>
             {props.folders.map(folder =>
-                <li key={folder.id}>
+                <div key={folder.id}>
                 <NavLink to={`/folder/${folder.id}`}>
                   <Folder 
                     key={folder.id}
                     {...folder}
                   />  
               </NavLink>
-              </li>
+              </div>
               )}
             </ul>
           <Link to={'/addFolder'} className="add-note">

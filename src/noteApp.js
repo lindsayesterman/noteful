@@ -48,22 +48,6 @@ class NoteApp extends Component{
                 </Link>
                 </header>
                 <Route
-                  exact
-                  path='/'
-                  render={({ history }) => {
-                    return <FolderList 
-                    folders={folders} 
-                    />
-                  }}
-                />
-                <Route
-                  exact
-                  path='/'
-                  render={({ history }) => {
-                    return <NoteList notes={notes} />
-                  }}
-                />
-                <Route
                   path='/addFolder'
                   render={({ history }) => {
                   return <AddFolder
