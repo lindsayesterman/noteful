@@ -26,15 +26,15 @@ div header h1{
 .folder-list{
   float: left;
   display: inline; 
-  width: 35%;
-  margin-left:3px;
+  width: 34%;
+  margin-left:4px;
 }
 
 .note-list{
   float: right;
   display: inline;
   width: 60%;
-  margin-right:20px;
+  margin-right:26px;
 }
 
 .add-note{

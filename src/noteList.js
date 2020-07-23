@@ -18,7 +18,7 @@ class NoteList extends React.Component {
               <Note
                 key={note.id}
                 {...note}
-              />
+              /> 
               </Link>
             )}
         </ul>

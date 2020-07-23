@@ -5,17 +5,17 @@ import store  from './store.js'
 import AddNote from './addNote.js'
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import AddFolder from './addFolder.js'
-import NotePage from './notePage.js'
+import AddFolder from './addFolder.js';
+import NotePage from './notePage.js';
 
 
 const  { folders, notes } = store
+
 class NoteApp extends Component{
     state = {
         notes,
         folders
     };
-
 
     setNotes = notes => {
         this.setState({
@@ -35,6 +35,8 @@ class NoteApp extends Component{
           folder: [ ...this.state.folders, folder ],
         })
       }
+
+
 
     render(){
         const { notes, folders  } = this.state

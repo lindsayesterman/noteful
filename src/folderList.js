@@ -1,6 +1,5 @@
 import React from 'react';
 import Folder from './folder.js'
-import folders from './store.js'
 import { Link } from 'react-router-dom';
 //import { NavLink } from 'react-router-dom';
 
