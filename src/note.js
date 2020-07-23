@@ -1,14 +1,15 @@
 import React from 'react';
 
-export default function Note (props){
+export default function Note(props){
         return(
+            <div>
             <li className='note'>
                 <p>{props.name}</p>
-                {console.log(props.name)}
                 <p>{props.modified}</p>
+            </li>
                 <button type="delete">
                     Delete
                 </button>
-            </li>
+            </div>
         )
 }

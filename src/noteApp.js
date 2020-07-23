@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FolderList from './folderList.js';
 import NoteList from './noteList.js'
-import notes from './store.js'
-import folders from './store.js'
+import store  from './store.js'
 import AddNote from './addNote.js'
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
-
-class NoteApp extends React.Component{
+const  { folders, notes } = store
+class NoteApp extends Component{
     state = {
         notes,
         folders
@@ -32,9 +31,11 @@ class NoteApp extends React.Component{
         const { folders } = this.state
         return(
             <div>
+              <header>
               <Link to={'/'}>
                 <h1>Noteful</h1>
                 </Link>
+                </header>
                 <Route
                   exact
                   path='/'

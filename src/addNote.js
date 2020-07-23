@@ -9,7 +9,16 @@ class AddNote extends React.Component{
     render(){
         return(
             <div>
-                <h1>hey</h1>
+                <form>
+                    <label for="note-name">Name</label>
+                    <input id="note-name" type="text"></input>
+                    <label for="note-content">Content</label>
+                    <input id="note-content" type="text"></input>
+                    <select for="note-folder">
+                    <option>Folder</option>
+                    </select>                   
+                </form>
+                <button type="submit">Add Note</button>
             </div>
         )
     }

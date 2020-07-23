@@ -9,16 +9,14 @@ class NoteList extends React.Component {
     };
 
     render() {
-    const noteLocation = this.props.notes.LOCATION
-    ? this.props.notes.LOCATION.split(',')
-    : [];
     const { notes } = this.props
+    console.log(notes)
       return (
         <section className='note-list'>
-          <h1>This is the note list</h1>
+          <h2>This is the note list</h2>
           <Link to={'/'}>
           <ul>
-            {noteLocation.map(note =>
+            {notes.map(note =>
               <Note
                 key={notes.id}
                 {...note}
@@ -26,7 +24,7 @@ class NoteList extends React.Component {
             )}
           </ul>
           </Link>
-            <Link to={'/addNote'}>
+            <Link to={'/addNote'} className="add-note">
               Add Note
               </Link>
         </section>

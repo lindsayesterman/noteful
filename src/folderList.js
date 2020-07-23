@@ -10,16 +10,14 @@ class NoteList extends React.Component {
     };
 
     render() {
-    const folderLocation = this.props.folders.LOCATION
-    ? this.props.folders.LOCATION.split(',')
-    : [];
+ 
     const { folders } = this.props
       return (
         <section className='folder-list'>
-            <h1>This is the folder list</h1>
+            <h2>This is the folder list</h2>
           <Link to={'/'}>
           <ul>
-            {folderLocation.map(folder =>
+            {folders.map(folder =>
               <Folder
                 key={folders.id}
                 {...folder}
