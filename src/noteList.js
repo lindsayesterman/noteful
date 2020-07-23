@@ -13,7 +13,6 @@ class NoteList extends React.Component {
     console.log(notes)
       return (
         <section className='note-list'>
-          <h2>This is the note list</h2>
           <Link to={'/'}>
           <ul>
             {notes.map(note =>

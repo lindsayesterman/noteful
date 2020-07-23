@@ -1,7 +1,8 @@
 import React from 'react';
 import Folder from './folder.js'
 import folders from './store.js'
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import AddNote from './addNote';
 
 
 class NoteList extends React.Component {
@@ -14,7 +15,6 @@ class NoteList extends React.Component {
     const { folders } = this.props
       return (
         <section className='folder-list'>
-            <h2>This is the folder list</h2>
           <Link to={'/'}>
           <ul>
             {folders.map(folder =>
@@ -25,6 +25,9 @@ class NoteList extends React.Component {
             )}
           </ul>
           </Link>
+          <Link to={'/addNote'} className="add-note">
+              Add Folder
+              </Link>
         </section>
       );
     }
