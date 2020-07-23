@@ -2,13 +2,11 @@ import React from 'react';
 
 export default function Folder (props){
     return(
-          <div>
           <li className='folder'>
-              <p>{props.name}</p>
-          </li>
+              <h3>{props.name}</h3>
               <button type="delete">
                   Delete
               </button>
-          </div>
+            </li>
     )
 }

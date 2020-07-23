@@ -4,7 +4,8 @@ import NoteList from './noteList.js'
 import store  from './store.js'
 import AddNote from './addNote.js'
 import { Route } from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import AddFolder from './addFolder.js'
 
 const  { folders, notes } = store
 class NoteApp extends Component{
@@ -26,9 +27,14 @@ class NoteApp extends Component{
         })
       }
 
+      addFolder = folder => {
+        this.setState({
+          folder: [ ...this.state.folders, folder ],
+        })
+      }
+
     render(){
-        const { notes } = this.state
-        const { folders } = this.state
+        const { notes, folders  } = this.state
         return(
             <div>
               <header>
@@ -57,6 +63,13 @@ class NoteApp extends Component{
                 render={() => 
                 <AddNote
                 onAddNote={this.addNote}
+                />}
+                />
+                 <Route 
+                path='/addFolder'
+                render={() => 
+                <AddFolder
+                onAddFolder={this.addFoldere}
                 />}
                 />
             </div>

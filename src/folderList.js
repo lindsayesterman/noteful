@@ -1,9 +1,7 @@
 import React from 'react';
 import Folder from './folder.js'
 import folders from './store.js'
-import { Link, Route } from 'react-router-dom';
-import AddNote from './addNote';
-
+import { Link } from 'react-router-dom';
 
 class NoteList extends React.Component {
     static defaultProps = {
@@ -25,7 +23,7 @@ class NoteList extends React.Component {
             )}
           </ul>
           </Link>
-          <Link to={'/addNote'} className="add-note">
+          <Link to={'/addFolder'} className="add-note">
               Add Folder
               </Link>
         </section>

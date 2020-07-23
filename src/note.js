@@ -2,14 +2,12 @@ import React from 'react';
 
 export default function Note(props){
         return(
-            <div>
             <li className='note'>
-                <p>{props.name}</p>
+                <h3>{props.name}</h3>
                 <p>{props.modified}</p>
-            </li>
                 <button type="delete">
                     Delete
                 </button>
-            </div>
+            </li>
         )
 }
