@@ -36,8 +36,6 @@ class NoteApp extends Component{
         })
       }
 
-
-
     render(){
         const { notes, folders  } = this.state
         return(

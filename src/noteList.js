@@ -10,6 +10,9 @@ class NoteList extends React.Component {
 
     render() {
     const { notes } = this.props
+    const folderId = this.props.notes.folderId
+    if(folderId) notes.filter(note=> note.id === folderId)
+
       return (
         <section className='note-list'>
           <ul>
