@@ -10,11 +10,6 @@ class NoteList extends React.Component {
 
     render() {
       const { notes } = this.props
-    /*const folderId = this.props.folderId
-    console.log(folderId)
-    if(folderId) this.notes.filter(note => 
-      note.id === folderId
-    )*/
 
       return (
         <section className='note-list'>
