@@ -18,6 +18,7 @@ class NoteList extends React.Component {
              <Link to={`/note/${note.id}`} style={{ textDecoration: 'none' }}>
               <Note
                 key={note.id}
+                ondeleteNote={this.deleteNote}
                 {...note}
               /> 
               </Link>

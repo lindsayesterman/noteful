@@ -18,7 +18,7 @@ class AddFolder extends React.Component{
                 onClick={onClickCancel}>
                  Go back
                  </button>                
-                 <button type="submit">Add Note</button>
+                 <button type="submit">Add Folder</button>
             </div>
         )
     }

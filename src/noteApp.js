@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import AddFolder from './addFolder.js';
 import NotePage from './notePage.js';
 import {getNotesForFolder, findNote, findFolder} from './notes-helpers';
-
+import config from './config'
 
 const  { folders, notes } = store
 
@@ -18,6 +18,33 @@ class NoteApp extends Component{
         notes,
         folders
     };
+
+    componentDidMount() {
+      Promise.all([
+          fetch(`${config.API_ENDPOINT}/notes`),
+          fetch(`${config.API_ENDPOINT}/folders`)
+      ])
+          .then(([notesRes, foldersRes]) => {
+              if (!notesRes.ok)
+                  return notesRes.json().then(e => Promise.reject(e));
+              if (!foldersRes.ok)
+                  return foldersRes.json().then(e => Promise.reject(e));
+
+              return Promise.all([notesRes.json(), foldersRes.json()]);
+          })
+          .then(([notes, folders]) => {
+              this.setState({notes, folders});
+          })
+          .catch(error => {
+              console.error({error});
+          });
+  }
+
+  deleteNote = noteId => {
+    this.setState({
+        notes: this.state.notes.filter(note => note.id !== noteId)
+    });
+};
 
     setNotes = notes => {
         this.setState({

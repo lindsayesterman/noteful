@@ -1,6 +1,6 @@
 
 .note, .folder{
-  color: #15c39a;
+  color: #61dafb;
   padding: 8px 0 8px 8px;
   position: relative;
   list-style:none;
@@ -18,23 +18,40 @@
   box-shadow: 1px 2px 20px 5px rgba(219,215,219,1);
 }
 
+p{
+  color:#019fb6;
+}
+
 div header h1{
   text-align:center;
-  color: #15c39a;
+  color: #61dafb;
+  font-size: 44px;
 }
+
+h1:after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px #019fb6;  
+  width:13%;
+  margin: 0 auto;
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+
+h1:hover:after { transform: scaleX(1); }
 
 .folder-list{
   float: left;
   display: inline; 
-  width: 34%;
-  margin-left:4px;
+  width: 35%;
+  margin-left:3%;
 }
 
 .note-list{
   float: right;
   display: inline;
-  width: 60%;
-  margin-right:26px;
+  width: 55%;
+  margin-right:7%;
 }
 
 .add-note{
@@ -49,6 +66,10 @@ div header h1{
   text-decoration: none;
   width: 66px;
   margin-left: 40px;
+  text-align:center;
+  color:#019fb6;
+  background-color:whitesmoke;
+  border: 1px solid blue;
 }
 
 input, select{
@@ -59,11 +80,10 @@ input, select{
 
 .note-content, h2{
   display:block;
-  margin:0 auto;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:2%;
   width: 60%;
   text-align:center;
 }
 
-Link {
-  text-decoration:none;
-}
