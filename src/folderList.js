@@ -2,20 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import Folder from './folder.js'
-import NotesContext from './notesContext';
 
-class FolderList extends React.Component{
-static defaultProps = {
-  folders:[]
-}
-      render(){
-        const { folders } = this.props
-        return(
+
+export default function FolderList (props){
+      return (
         <section className='folder-list'>
           <ul>
-            {folders.map(folder =>
+            {props.folders.map(folder =>
                 <div key={folder.id}>
-                <NavLink to={`/folder/${folder.id}`}>
+                <NavLink to={`/folder/${folder.id}`} style={{ textDecoration: 'none' }}>
                   <Folder 
                     key={folder.id}
                     {...folder}
@@ -30,6 +25,9 @@ static defaultProps = {
         </section>
       );
     }
-  }
   
-  export default FolderList;
+FolderList.defaultProps = {
+  folders: []
+}
+  
+  

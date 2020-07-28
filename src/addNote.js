@@ -1,14 +1,14 @@
 import React from 'react';
-import NotesContext from './notesContext';
+import { withRouter } from 'react-router-dom';
 
 class AddNote extends React.Component{
-    static contextType = NotesContext;
-
-    handleClickCancel = () => {
-            this.props.history.push('/')
-          };
-
+    static defaultProps = {
+        onAddNote: () => {}
+    };
+    
     render(){
+        const { onClickCancel } = this.props
+
         return(
             <div>
                 <form>
@@ -21,7 +21,7 @@ class AddNote extends React.Component{
                     </select>                   
                 </form>
                 <button type='button' 
-                onClick={this.handleClickCancel}>
+                onClick={onClickCancel}>
                  Go back
                  </button>
             <button type="submit">Add Note</button>
@@ -30,4 +30,4 @@ class AddNote extends React.Component{
     }
 }
 
-export default AddNote;
+export default withRouter(AddNote);
