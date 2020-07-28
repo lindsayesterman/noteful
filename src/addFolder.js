@@ -1,13 +1,14 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import NotesContext from './notesContext';
 
 class AddFolder extends React.Component{
-    static defaultProps = {
-        onAddFolder: () => {}
-    };
+    static contextType = NotesContext;
     
+    handleClickCancel = () => {
+            this.props.history.push('/')
+          };
+
     render(){
-        const { onClickCancel } = this.props
         return(
             <div>
                 <form>
@@ -15,7 +16,7 @@ class AddFolder extends React.Component{
                     <input id="folder-name" type="text"></input>
                 </form>
                 <button type='button' 
-                onClick={onClickCancel}>
+                onClick={this.handleClickCancel}>
                  Go back
                  </button>                
                  <button type="submit">Add Note</button>
@@ -24,4 +25,4 @@ class AddFolder extends React.Component{
     }
 }
 
-export default withRouter(AddFolder);
+export default AddFolder;
