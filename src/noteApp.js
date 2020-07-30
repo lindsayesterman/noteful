@@ -41,10 +41,13 @@ class NoteApp extends Component{
   }
 
   deleteNote = noteId => {
-    this.setState({
-        notes: this.state.notes.filter(note => note.id !== noteId)
-    });
-};
+    const newNotes = this.state.notes.filter(n =>
+        n.id !== noteId
+      )
+      this.setState({
+        notes: newNotes
+      })
+    }
 
     setNotes = notes => {
         this.setState({
