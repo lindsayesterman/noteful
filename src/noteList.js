@@ -7,13 +7,17 @@ class NoteList extends React.Component {
   static defaultProps = {
     notes: []
   };
+
+  static contextType = NotesContext;
+
     render() {
       const { notes } = this.props
       return (
         <section className='note-list'>
           <ul>
             {notes.map(note =>
-             <Link to={`/note/${note.id}`}>
+             <Link to={`/note/${note.id}`}
+             style={{ textDecoration: 'none' }}>
               <Note
                 key={note.id}
                 {...note}

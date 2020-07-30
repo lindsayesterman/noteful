@@ -8,6 +8,9 @@ class FolderList extends React.Component{
 static defaultProps = {
   folders:[]
 }
+
+static contextType = NotesContext;
+
       render(){
         const { folders } = this.props
         return(
@@ -15,7 +18,7 @@ static defaultProps = {
           <ul>
             {folders.map(folder =>
                 <div key={folder.id}>
-                <NavLink to={`/folder/${folder.id}`}>
+                <NavLink to={`/folder/${folder.id}`} style={{ textDecoration: 'none' }}>
                   <Folder 
                     key={folder.id}
                     {...folder}

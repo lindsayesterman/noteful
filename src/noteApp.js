@@ -9,8 +9,9 @@ import AddFolder from './addFolder.js';
 import NotePage from './notePage.js';
 import {getNotesForFolder, findNote, findFolder} from './notes-helpers';
 import NotesContext from './notesContext.js'
+import config from './config'
 
-const  { folders, notes } = store
+const  { notes, folders } = store
 
 
 class NoteApp extends Component{
@@ -47,41 +48,6 @@ class NoteApp extends Component{
             })
           }
 
-      renderNavRoutes() {
-        return (
-            <>
-                {['/', '/folder/:folderId'].map(path => (
-                    <Route
-                        exact
-                        key={path}
-                        path={path}
-                        component={FolderList}
-                    />
-                ))}
-                <Route path="/note/:noteId" component={NotePage} />
-                <Route path="/add-folder" component={AddFolder} />
-                <Route path="/add-note" component={AddNote} />
-            </>
-        );
-    }
-
-
-      renderMainRoutes() {
-        return (
-            <>
-                {['/', '/folder/:folderId'].map(path => (
-                    <Route
-                        exact
-                        key={path}
-                        path={path}
-                        component={NoteList}
-                    />
-                ))}
-                <Route path="/note/:noteId" component={NotePage} />
-            </>
-        );
-    }
-
     render(){
       const value = {
         notes: this.state.notes,
@@ -91,19 +57,75 @@ class NoteApp extends Component{
     };
     
         return(
-            <div>
-                <NotesContext.Provider>
-                <div className="App">
-                    <nav className="App__nav">{this.renderNavRoutes()}</nav>
-                    <header className="App__header">
-                        <h1>
-                            <Link to="/">Noteful</Link>{' '}
-                        </h1>
-                    </header>
-                    <main className="App__main">{this.renderMainRoutes()}</main>
-                </div>
-                </NotesContext.Provider>
-            </div>
+          <div>
+          <header>
+         <Link to={'/'} style={{ textDecoration: 'none' }}>
+           <h1>Noteful</h1>
+           </Link>
+           </header>
+           <Route
+             path='/addFolder'
+             render={({ history }) => {
+             return <AddFolder
+             onAddFolder={this.addFolder}
+             onClickCancel={() => history.push('/')}
+              />
+            }}
+           />
+            <Route
+             path='/addNote'
+             render={({ history }) => {
+             return <AddNote
+             onAddNote={this.addNote}
+             onClickCancel={() => history.push('/')}
+         />
+       }}
+           />
+     <Route
+       path='/note/:noteId'
+       component={NotePage}
+       /> 
+        {['/', '/folder/:folderId'].map(path => (
+               <Route
+                   exact
+                   key={path}
+                   path={path}
+                   render={routeProps => {
+                       const {folderId} = routeProps.match.params;
+                       const notesForFolder = getNotesForFolder(
+                           notes,
+                           folderId
+                       );
+                       return (
+                           <NoteList
+                               {...routeProps}
+                               notes={notesForFolder}
+                           />
+                       );
+                   }}
+               />
+           ))}
+            {['/', '/folder/:folderId'].map(path => (
+               <Route
+                   exact
+                   key={path}
+                   path={path}
+                   render={routeProps => {
+                       const {folderId} = routeProps.match.params;
+                       const notesForFolder = getNotesForFolder(
+                           notes,
+                           folderId
+                       );
+                       return (
+                           <FolderList
+                               {...routeProps}
+                               folders={folders}
+                           />
+                       );
+                   }}
+               />
+           ))}
+       </div>
         )
     }
 }
