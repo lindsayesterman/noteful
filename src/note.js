@@ -2,48 +2,54 @@ import React from 'react';
 import config from './config.js'
 import NotesContext from './notesContext';
 
-function deleteNoteRequest(noteId, callback) {
-  fetch(config.API_ENDPOINT + `/${noteId}`, {
-    method: 'DELETE',
-    headers: {
-      'authorization': `bearer ${config.API_KEY}`
-    }
-  })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
-      }
-      return res.json()
-    })
-    .then(data => {
-      callback(noteId)
-    })
-    .catch(error => {
-      console.error(error)
-    })
-}
+class Note extends React.Component {
+  static defaultProps ={
+    onDeleteNote: () => {},
+  }
 
-export default function Note(props){
+  static contextType = NotesContext;
+
+  handleClickDelete = e => {
+    e.preventDefault()
+    const noteId = this.props.id
+
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then(() => {
+        this.context.deleteNote(noteId)
+        this.props.onDeleteNote(noteId)
+      })
+      .catch(error => {
+        console.error({ error })
+      })
+  }
+
+
+render(){
+  const { name, modified } = this.props
         return(
-          <NotesContext.Consumer>
-      {(context) => (
+          <div>
             <li className='note'>
-                <h3>{props.name}</h3>
-                <p>{props.modified}</p>
+                <h3>{name}</h3>
+                <p>{modified}</p>
                 <button
-              onClick={() => {
-                deleteNoteRequest(
-                  props.id,
-                  context.deleteNote,
-                )
-              }}
-             >
+                 onClick={this.handleClickDelete}>
                Delete 
               </button>
             </li>
-            )}
-          </NotesContext.Consumer>
+          </div>
         )
+     }
 }
+
+
+export default Note; 

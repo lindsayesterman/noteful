@@ -5,20 +5,18 @@ import Folder from './folder.js'
 import NotesContext from './notesContext';
 
 class FolderList extends React.Component{
-static defaultProps = {
-  folders:[]
-}
 
 static contextType = NotesContext;
 
       render(){
-        const { folders } = this.props
+        const { folders } = this.context
         return(
         <section className='folder-list'>
           <ul>
             {folders.map(folder =>
                 <div key={folder.id}>
-                <NavLink to={`/folder/${folder.id}`} style={{ textDecoration: 'none' }}>
+                <NavLink to={`/folder/${folder.id}`}
+                 style={{ textDecoration: 'none' }}>
                   <Folder 
                     key={folder.id}
                     {...folder}
