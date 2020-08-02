@@ -9,7 +9,7 @@ class NoteList extends React.Component {
   static contextType = NotesContext;
 
     render() {
-      const { notes } = this.props
+      const { notes=[] } = this.props
       const {folderId} = this.props.match.params;
       const notesForFolder = getNotesForFolder(
           notes,

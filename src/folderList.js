@@ -9,7 +9,7 @@ class FolderList extends React.Component{
 static contextType = NotesContext;
 
       render(){
-        const { folders } = this.props
+        const { folders=[] } = this.props
         return(
         <section className='folder-list'>
           <ul>

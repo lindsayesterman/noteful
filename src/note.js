@@ -42,6 +42,7 @@ render(){
                 <h3>{name}</h3>
                 <p>{modified}</p>
                 <button
+                 type='button'
                  onClick={this.handleClickDelete}>
                Delete 
               </button>

@@ -9,17 +9,14 @@ import NotePage from './notePage.js';
 import {getNotesForFolder} from './notes-helpers';
 import NotesContext from './notesContext.js'
 import config from './config'
-import store from './store.js'
 import NoteError from './noteError';
 
-const { notes, folders } = store
 
 class NoteApp extends Component{
     state = {
         notes: [],
-        folders: [],
+        folders: []
     };
-
 
     componentDidMount() {
       Promise.all([
@@ -50,6 +47,8 @@ class NoteApp extends Component{
             notes: this.state.notes.filter(note => note.id !== noteId)
         });
     };
+
+
 
     render(){
       const value = {
@@ -87,7 +86,7 @@ class NoteApp extends Component{
                     render={routeProps => {
                         const {folderId} = routeProps.match.params;
                         const notesForFolder = getNotesForFolder(
-                            notes,
+                            value.notes,
                             folderId
                         );
                         return (
@@ -95,7 +94,7 @@ class NoteApp extends Component{
                           <NoteError>
                           <FolderList
                                   {...routeProps}
-                                  folders={folders}
+                                  folders={value.folders}
                               />
                             <NoteList
                                   {...routeProps}
