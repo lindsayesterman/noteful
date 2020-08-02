@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FolderList from './folderList.js';
 import NoteList from './noteList.js'
-import store  from './store.js'
 import AddNote from './addNote.js'
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -10,14 +9,17 @@ import NotePage from './notePage.js';
 import {getNotesForFolder} from './notes-helpers';
 import NotesContext from './notesContext.js'
 import config from './config'
+import store from './store.js'
+import NoteError from './noteError';
 
-const  { notes, folders } = store
+const { notes, folders } = store
 
 class NoteApp extends Component{
     state = {
         notes: [],
         folders: [],
     };
+
 
     componentDidMount() {
       Promise.all([
@@ -42,33 +44,12 @@ class NoteApp extends Component{
               console.error({error});
           });
   }
-
-
-    setNotes = notes => {
-        this.setState({
-          notes,
-          folders
-        })
-      }
-    
-      addNote = note => {
-        this.setState({
-          notes: [ ...this.state.notes, note ],
-        })
-      }
-
-      addFolder = folder => {
-        this.setState({
-          folder: [ ...this.state.folders, folder ],
-        })
-      }
-
+  
       handleDeleteNote = noteId => {
         this.setState({
             notes: this.state.notes.filter(note => note.id !== noteId)
         });
     };
-
 
     render(){
       const value = {
@@ -83,7 +64,7 @@ class NoteApp extends Component{
             <header>
           <Link to={'/'} style={{ textDecoration: 'none' }}>
             <h1>Noteful</h1>
-          </Link>
+            </Link>
             </header>
             <Route
               path='/addFolder'
@@ -93,11 +74,11 @@ class NoteApp extends Component{
               <Route
               path='/addNote'
               component={AddNote}
-            />
-      <Route
-        path='/note/:noteId'
-        component={NotePage}
-        /> 
+               />
+              <Route
+                path='/note/:noteId'
+                component={NotePage}
+                /> 
               {['/', '/folder/:folderId'].map(path => (
                 <Route
                     exact
@@ -111,14 +92,16 @@ class NoteApp extends Component{
                         );
                         return (
                           <>
-                          <NoteList
-                                {...routeProps}
-                                notes={notesForFolder}
-                            />
-                            <FolderList
-                                {...routeProps}
-                                folders={folders}
-                            />
+                          <NoteError>
+                          <FolderList
+                                  {...routeProps}
+                                  folders={folders}
+                              />
+                            <NoteList
+                                  {...routeProps}
+                                  notes={notesForFolder}
+                              />
+                            </NoteError>
                           </>
                         );
                     }}

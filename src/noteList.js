@@ -2,7 +2,7 @@ import React from 'react';
 import Note from './note.js'
 import { Link } from 'react-router-dom';
 import NotesContext from './notesContext';
-import {getNotesForFolder} from './notes-helpers';
+import { getNotesForFolder } from './notes-helpers'
 
 class NoteList extends React.Component {
  
@@ -11,10 +11,10 @@ class NoteList extends React.Component {
     render() {
       const { notes } = this.props
       const {folderId} = this.props.match.params;
-                const notesForFolder = getNotesForFolder(
-                        notes,
-                        folderId
-                );
+      const notesForFolder = getNotesForFolder(
+          notes,
+          folderId
+      );
       return (
         <section className='note-list'>
           <ul>
