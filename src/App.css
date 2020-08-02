@@ -86,3 +86,9 @@ input, select{
   width: 60%;
   text-align:center;
 }
+
+.note-page{
+  display:block;
+  margin:0 auto;
+  width:60%;
+}
