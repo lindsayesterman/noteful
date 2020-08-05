@@ -106,7 +106,6 @@ class NoteApp extends Component{
                   )
               }}
                />
-
               <Route
                 path='/note/:noteId'
                 component={NotePage}

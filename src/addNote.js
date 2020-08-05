@@ -3,16 +3,19 @@ import NotesContext from './notesContext';
 import config from './config'
 
 class AddNote extends React.Component{
+    state = {
+        error: null,
+      };
 
     static contextType = NotesContext;
 
     handleNoteSubmit = (e) => {
-        const { noteName, noteContent, noteFolder } = e.target
         e.preventDefault();
         const note  = {
-            noteName: noteName.value,
-            noteContent: noteContent.value, 
-            noteFolder: noteFolder.value
+            name: e.target['noteName'].value,
+            content: e.target['noteContent'].value,
+            folderId: e.target['noteFolder'].value,
+            modified: new Date(),
         }
         this.setState({error:null})
         fetch(`${config.API_ENDPOINT}/notes`, {
@@ -30,13 +33,9 @@ class AddNote extends React.Component{
             }
             return res.json()
         })
-        .then (data => {
-            noteName.value=''
-            noteContent.value=''
-            noteFolder.value={}
-            this.context.addNote(data)
+        .then (note => {
+            this.context.addNote(note)
             this.props.history.push('/')
-            console.log(data)
         })
         .catch(error=>{
             this.setState({ error })
@@ -53,12 +52,12 @@ class AddNote extends React.Component{
             <div  className="add-note-form">
                 <form onSubmit={this.handleNoteSubmit}>
                     <label htmlFor="noteName">Name</label>
-                    <input id="noteName" type="text"></input>
+                    <input id="noteName" name="noteName" type="text"></input>
                     <label htmlFor="noteContent">Content</label>
-                    <input id="noteContent" type="text"></input>
-                    <select htmlFor="noteFolder">
+                    <input id="noteContent" name="noteContent" type="text"></input>
+                    <select id='noteFolder' name='noteFolder'>
                     {folders.map(folder =>
-                    <option id="noteFolder">{folder.name}</option>
+                    <option key={folder.id} value={folder.id}>{folder.name}</option>
                     )}
                     </select>                   
                 <button type='button' 
