@@ -19,8 +19,10 @@ class NoteList extends React.Component {
         <section className='note-list'>
           <ul>
             {notes.map(note =>
-             <Link to={`/note/${note.id}`}
-             style={{ textDecoration: 'none' }}>
+             <Link 
+             to={`/note/${note.id}`}
+             style={{ textDecoration: 'none' }}
+             key={note.id}>
               <Note
                 key={note.id}
                 {...note}

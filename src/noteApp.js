@@ -15,7 +15,8 @@ import NoteError from './noteError';
 class NoteApp extends Component{
     state = {
         notes: [],
-        folders: []
+        folders: [],
+        error: null
     };
 
     componentDidMount() {
@@ -38,6 +39,7 @@ class NoteApp extends Component{
               });
           })
           .catch(error => {
+              this.setState({ error })
               console.error({error});
           });
   }
@@ -48,7 +50,30 @@ class NoteApp extends Component{
         });
     };
 
+    setNotes = notes => {
+      this.setState({
+        notes
+      })
+    }
 
+    setFolder = folders => {
+      this.setState({
+        folders
+      })
+    }
+  
+    addNote = note => {
+      this.setState({
+        notes: [ ...this.state.notes, note ],
+      })
+    }
+
+
+    addFolder = folder => {
+      this.setState({
+        folder: [ ...this.state.folders, folder ],
+      })
+    }
 
     render(){
       const value = {
@@ -72,8 +97,16 @@ class NoteApp extends Component{
 
               <Route
               path='/addNote'
-              component={AddNote}
+              render={routeProps => {
+                  const { folders } = value
+                  return(
+                    <AddNote
+                      folders={value.folders}
+                      /> 
+                  )
+              }}
                />
+
               <Route
                 path='/note/:noteId'
                 component={NotePage}

@@ -1,6 +1,6 @@
 import React from 'react';
 import NotesContext from './notesContext'
-import { findNote } from './notes-helpers'
+import { findNote, findFolder } from './notes-helpers'
 import Note from './note'
 
 class NotePage extends React.Component{
@@ -17,9 +17,10 @@ class NotePage extends React.Component{
       static contextType = NotesContext;
 
     render(){
-    const { notes=[] } = this.context
-    const { noteId } = this.props.match.params
+    const { notes=[], folders=[] } = this.context
+    const { noteId, folderId } = this.props.match.params
     const note = findNote(notes, noteId) || { content: '' }
+    const folder = findFolder(folders, note.folderId) || { h3: ''}
        return(
            <div className="note-page">
             <Note
@@ -31,6 +32,7 @@ class NotePage extends React.Component{
           {note.content.split(/\n \r|\n/).map((para, i) =>
             <p key={i}>{para}</p>
           )}
+          <h3>{folder.name}</h3>
         </div>
        )
     }
