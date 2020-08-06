@@ -12,9 +12,8 @@ static contextType = NotesContext;
         const { folders=[] } = this.props
         return(
         <section className='folder-list'>
-          <ul>
             {folders.map(folder =>
-                <div key={folder.id}>
+                <ul key={folder.id}>
                 <NavLink to={`/folder/${folder.id}`}
                  style={{ textDecoration: 'none' }}>
                   <Folder 
@@ -22,9 +21,8 @@ static contextType = NotesContext;
                     {...folder}
                   />  
               </NavLink>
-              </div>
+              </ul>
               )}
-            </ul>
           <Link to={'/addFolder'} className="add-note">
               Add Folder
               </Link>

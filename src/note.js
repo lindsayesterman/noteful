@@ -37,7 +37,6 @@ class Note extends React.Component {
 render(){
   const { name, modified } = this.props
         return(
-          <div>
             <li className='note'>
                 <h3>{name}</h3>
                 <p>{modified}</p>
@@ -47,7 +46,6 @@ render(){
                Delete 
               </button>
             </li>
-          </div>
         )
      }
 }

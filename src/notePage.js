@@ -29,10 +29,10 @@ class NotePage extends React.Component{
           modified={note.modified}
           onDeleteNote={this.handleDeleteNote}
         />
+             <h3>{folder.name}</h3>
           {note.content.split(/\n \r|\n/).map((para, i) =>
             <p key={i}>{para}</p>
           )}
-          <h3>{folder.name}</h3>
         </div>
        )
     }
