@@ -84,7 +84,7 @@ class AddNote extends React.Component{
                     </select>                   
                 <button type='button' 
                 onClick={this.handleClickCancel}>
-                 Go back
+                  Go back
                  </button>
                 <button 
                 type="submit">

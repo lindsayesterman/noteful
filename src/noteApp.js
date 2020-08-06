@@ -94,15 +94,21 @@ class NoteApp extends Component{
             </header>
             <Route
               path='/addFolder'
-              component={AddFolder}
-                />
-
+              render={routeProps => {
+                return(
+                  <AddFolder
+                    {...routeProps}
+                    /> 
+                )
+            }}               
+             />
               <Route
               path='/addNote'
               render={routeProps => {
                   return(
                     <AddNote
                       folders={value.folders}
+                      {...routeProps}
                       /> 
                   )
               }}
