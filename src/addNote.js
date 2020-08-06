@@ -25,7 +25,7 @@ class AddNote extends React.Component{
                     'content-type': 'application/json'
                 }
         })
-        .then(([res]) => {
+          .then(res => {
             if (!res.ok){
                 return res.json().then(error => {
                     throw error
@@ -33,10 +33,10 @@ class AddNote extends React.Component{
             }
             return res.json()
         })
-        .then (note => {
-            this.context.addNote(note)
+        .then (data => {
+            console.log(data)
+            this.context.addNote(data)
             this.props.history.push('/')
-            console.log(note)
         })
         .catch(error=>{
             this.setState({ error })
@@ -49,23 +49,45 @@ class AddNote extends React.Component{
 
     render(){
         const { folders=[] } = this.props
+        const { error } = this.state
         return(
             <div  className="add-note-form">
                 <form onSubmit={this.handleNoteSubmit}>
+                <div className='error' role='alert'>
+                        {error && <p>{error.message}</p>}
+                    </div>
                     <label htmlFor="noteName">Name</label>
-                    <input id="noteName" name="noteName" type="text"></input>
+                    <input 
+                    id="noteName" 
+                    name="noteName" 
+                    type="text"
+                    placeholder="Name of note"
+                    required>
+                    </input>
                     <label htmlFor="noteContent">Content</label>
-                    <input id="noteContent" name="noteContent" type="text"></input>
-                    <select id='noteFolder' name='noteFolder'>
+                    <input 
+                    id="noteContent" 
+                    name="noteContent" 
+                    type="text"
+                    placeholder="Content of note"
+                    required></input>
+                    <select 
+                    id='noteFolder' 
+                    name='noteFolder'>
                     {folders.map(folder =>
-                    <option key={folder.id} value={folder.id}>{folder.name}</option>
+                        <option 
+                        key={folder.id} 
+                        value={folder.id}>
+                            {folder.name}
+                        </option>
                     )}
                     </select>                   
                 <button type='button' 
                 onClick={this.handleClickCancel}>
                  Go back
                  </button>
-                <button type="submit">
+                <button 
+                type="submit">
                      Add Note
                 </button>
                 </form>

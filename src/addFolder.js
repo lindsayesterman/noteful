@@ -10,10 +10,9 @@ class AddFolder extends React.Component{
     static contextType = NotesContext;
 
     handleFolderSubmit = (e) => {
-        const { name } = e.target
         e.preventDefault();
         const folder  = {
-            name: name.value
+            name: e.target['folderName'].value,
         }
         this.setState({error:null})
         fetch(`${config.API_ENDPOINT}/folders`, {
@@ -23,7 +22,7 @@ class AddFolder extends React.Component{
                     'content-type': 'application/json'
                 }
         })
-        .then(([res]) => {
+        .then(res => {
             if (!res.ok){
                 return res.json().then(error => {
                     throw error
@@ -32,11 +31,9 @@ class AddFolder extends React.Component{
             return res.json()
         })
         .then (data => {
-            name.value=''
+            console.log(data)
             this.context.addFolder(data)
             this.props.history.push('/')
-            console.log(data)
-
         })
         .catch(error=>{
             this.setState({ error })
@@ -55,11 +52,11 @@ class AddFolder extends React.Component{
                     <div className='error' role='alert'>
                         {error && <p>{error.message}</p>}
                     </div>
-                    <label htmlFor="name">Folder Name</label>
+                    <label htmlFor="folderName">Folder Name</label>
                     <input 
-                    id="name" 
+                    id="foldeName" 
                     type="text"
-                    name='name'
+                    name='folderName'
                     placeholder="Name of new Folder"
                     required>
                     </input>
