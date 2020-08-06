@@ -1,33 +1,77 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import NotesContext from './notesContext';
+import config from './config'
 
 class AddNote extends React.Component{
-    static defaultProps = {
-        onAddNote: () => {}
-    };
-    
-    render(){
-        const { onClickCancel } = this.props
+    state = {
+        error: null,
+      };
 
+    static contextType = NotesContext;
+
+    handleNoteSubmit = (e) => {
+        e.preventDefault();
+        const note  = {
+            name: e.target['noteName'].value,
+            content: e.target['noteContent'].value,
+            folderId: e.target['noteFolder'].value,
+            modified: new Date(),
+        }
+        this.setState({error:null})
+        fetch(`${config.API_ENDPOINT}/notes`, {
+            method: 'POST',
+            body: JSON.stringify(note),
+                headers: {
+                    'content-type': 'application/json'
+                }
+        })
+        .then(([res]) => {
+            if (!res.ok){
+                return res.json().then(error => {
+                    throw error
+                })
+            }
+            return res.json()
+        })
+        .then (note => {
+            this.context.addNote(note)
+            this.props.history.push('/')
+            console.log(note)
+        })
+        .catch(error=>{
+            this.setState({ error })
+        })
+    }
+
+    handleClickCancel = () => {
+        this.props.history.push('/')
+    };
+
+    render(){
+        const { folders=[] } = this.props
         return(
-            <div>
-                <form>
-                    <label for="note-name">Name</label>
-                    <input id="note-name" type="text"></input>
-                    <label for="note-content">Content</label>
-                    <input id="note-content" type="text"></input>
-                    <select for="note-folder">
-                    <option>Folder</option>
+            <div  className="add-note-form">
+                <form onSubmit={this.handleNoteSubmit}>
+                    <label htmlFor="noteName">Name</label>
+                    <input id="noteName" name="noteName" type="text"></input>
+                    <label htmlFor="noteContent">Content</label>
+                    <input id="noteContent" name="noteContent" type="text"></input>
+                    <select id='noteFolder' name='noteFolder'>
+                    {folders.map(folder =>
+                    <option key={folder.id} value={folder.id}>{folder.name}</option>
+                    )}
                     </select>                   
-                </form>
                 <button type='button' 
-                onClick={onClickCancel}>
+                onClick={this.handleClickCancel}>
                  Go back
                  </button>
-            <button type="submit">Add Note</button>
+                <button type="submit">
+                     Add Note
+                </button>
+                </form>
             </div>
         )
     }
 }
 
-export default withRouter(AddNote);
+export default AddNote;

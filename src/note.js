@@ -1,49 +1,54 @@
 import React from 'react';
 import config from './config';
+import NotesContext from './notesContext'
 
-function deleteNoteRequest(noteId, cb) {
-    fetch(config.API_ENDPOINT + `/${noteId}`, {
+class Note extends React.Component {
+  static defaultProps ={
+    onDeleteNote: () => {},
+  }
+
+  static contextType = NotesContext;
+
+  handleClickDelete = e => {
+    e.preventDefault()
+    const noteId = this.props.id
+
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${config.API_KEY}`
-      }
+        'content-type': 'application/json'
+      },
     })
       .then(res => {
-        if (!res.ok) {
-          // get the error message from the response,
-          return res.json().then(error => {
-            // then throw it
-            throw error
-          })
-        }
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
         return res.json()
       })
-      .then(data => {
-        console.log({ data })
-        cb(noteId)
+      .then(() => {
+        this.context.deleteNote(noteId)
+        this.props.onDeleteNote(noteId)
       })
       .catch(error => {
-        console.log(error)
+        console.error({ error })
       })
   }
-  
-export default function Note (props){
+
+
+render(){
+  const { name, modified } = this.props
         return(
             <li className='note'>
-                <h3>{props.name}</h3>
-                <p>{props.modified}</p>
-                <button 
-                type="delete"
-                onClick={() => {
-                    deleteNoteRequest(
-                      props.id,
-                      props.deleteNote,
-                    )
-                  }}>
-                    Remove
-                </button>
+                <h3>{name}</h3>
+                <p>{modified}</p>
+                <button
+                 type='button'
+                 onClick={this.handleClickDelete}>
+               Delete 
+              </button>
             </li>
         )
+     }
 }
 
+
+export default Note; 

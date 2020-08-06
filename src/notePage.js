@@ -1,17 +1,41 @@
 import React from 'react';
-import store from './store.js'
+import NotesContext from './notesContext'
+import { findNote, findFolder } from './notes-helpers'
+import Note from './note'
 
-const { notes } = store
-export default function NotePage(props) {
-    const note = notes.find(p =>
-        p.id === props.match.params.noteId
-      )
+class NotePage extends React.Component{
+    static defaultProps = {
+        match: {
+          params: {}
+        }
+      }
+
+      handleDeleteNote = noteId => {
+        this.props.history.push(`/`)
+      }
+    
+      static contextType = NotesContext;
+
+    render(){
+    const { notes=[], folders=[] } = this.context
+    const { noteId } = this.props.match.params
+    const note = findNote(notes, noteId) || { content: '' }
+    const folder = findFolder(folders, note.folderId) || { h3: ''}
        return(
-           <div>
-                <h2>{note.name}</h2>
-                <p className="note-content">
-                    {note.content}
-                </p>
-           </div>
+           <div className="note-page">
+            <Note
+          id={note.id}
+          name={note.name}
+          modified={note.modified}
+          onDeleteNote={this.handleDeleteNote}
+        />
+             <h3>{folder.name}</h3>
+          {note.content.split(/\n \r|\n/).map((para, i) =>
+            <p key={i}>{para}</p>
+          )}
+        </div>
        )
+      }
    }
+
+   export default NotePage;

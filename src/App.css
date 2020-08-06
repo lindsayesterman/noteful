@@ -70,6 +70,7 @@ h1:hover:after { transform: scaleX(1); }
   color:#019fb6;
   background-color:whitesmoke;
   border: 1px solid blue;
+  margin-bottom:40px;
 }
 
 input, select{
@@ -87,3 +88,14 @@ input, select{
   text-align:center;
 }
 
+.note-page{
+  display:block;
+  margin:0 auto;
+  width:60%;
+}
+
+.add-note-form{
+  display:block;
+  margin:0 auto;
+  width:60%;
+}
