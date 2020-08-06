@@ -92,6 +92,7 @@ class NoteApp extends Component{
             <h1>Noteful</h1>
             </Link>
             </header>
+            <NoteError>
             <Route
               path='/addFolder'
               render={routeProps => {
@@ -102,6 +103,8 @@ class NoteApp extends Component{
                 )
             }}               
              />
+            </NoteError>
+            <NoteError>
               <Route
               path='/addNote'
               render={routeProps => {
@@ -113,6 +116,7 @@ class NoteApp extends Component{
                   )
               }}
                />
+            </NoteError>
               <Route
                 path='/note/:noteId'
                 component={NotePage}
@@ -130,7 +134,6 @@ class NoteApp extends Component{
                         );
                         return (
                           <>
-                          <NoteError>
                           <FolderList
                                   {...routeProps}
                                   folders={value.folders}
@@ -139,7 +142,6 @@ class NoteApp extends Component{
                                   {...routeProps}
                                   notes={notesForFolder}
                               />
-                            </NoteError>
                           </>
                         );
                     }}
