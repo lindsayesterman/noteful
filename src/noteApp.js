@@ -79,6 +79,8 @@ class NoteApp extends Component{
       const value = {
         notes: this.state.notes,
         folders: this.state.folders,
+        addFolder: this.addFolder,
+        addNote: this.addNote,
         deleteNote: this.handleDeleteNote
     };
     
@@ -98,7 +100,6 @@ class NoteApp extends Component{
               <Route
               path='/addNote'
               render={routeProps => {
-                  const { folders } = value
                   return(
                     <AddNote
                       folders={value.folders}

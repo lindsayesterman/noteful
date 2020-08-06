@@ -36,6 +36,7 @@ class AddNote extends React.Component{
         .then (note => {
             this.context.addNote(note)
             this.props.history.push('/')
+            console.log(note)
         })
         .catch(error=>{
             this.setState({ error })
@@ -43,8 +44,8 @@ class AddNote extends React.Component{
     }
 
     handleClickCancel = () => {
-            this.props.history.push('/')
-          };
+        this.props.history.push('/')
+    };
 
     render(){
         const { folders=[] } = this.props
@@ -65,7 +66,7 @@ class AddNote extends React.Component{
                  Go back
                  </button>
                 <button type="submit">
-                Add Note
+                     Add Note
                 </button>
                 </form>
             </div>

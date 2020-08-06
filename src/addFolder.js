@@ -35,6 +35,8 @@ class AddFolder extends React.Component{
             name.value=''
             this.context.addFolder(data)
             this.props.history.push('/')
+            console.log(data)
+
         })
         .catch(error=>{
             this.setState({ error })
