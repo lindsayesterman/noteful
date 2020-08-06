@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import Folder from './folder.js'
 import NotesContext from './notesContext'
+import PropTypes from 'prop-types'
 
 export default class FolderList extends React.Component{
 
@@ -29,5 +30,8 @@ static contextType = NotesContext;
         </section>
       );
     }
-
   }
+
+  FolderList.propTypes = {
+    folder: PropTypes.object
+  };

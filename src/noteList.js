@@ -2,6 +2,7 @@ import React from 'react';
 import Note from './note.js'
 import { Link } from 'react-router-dom';
 import NotesContext from './notesContext'
+import PropTypes from 'prop-types'
 
 class NoteList extends React.Component {
  
@@ -32,5 +33,9 @@ class NoteList extends React.Component {
       );
     }
   }
+
+  Note.propTypes = {
+    bookmarks: PropTypes.arrayOf(PropTypes.object)
+  };
 
   export default NoteList;

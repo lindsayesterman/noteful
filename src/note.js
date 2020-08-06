@@ -1,6 +1,7 @@
 import React from 'react';
 import config from './config';
 import NotesContext from './notesContext'
+import PropTypes from 'prop-types'
 
 class Note extends React.Component {
   static defaultProps ={
@@ -50,5 +51,13 @@ render(){
      }
 }
 
-
 export default Note; 
+
+Note.propTypes = {
+  modified: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  handleDelete: PropTypes.func
+};
+
+

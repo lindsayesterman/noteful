@@ -2,6 +2,7 @@ import React from 'react';
 import NotesContext from './notesContext'
 import { findNote, findFolder } from './notes-helpers'
 import Note from './note'
+import PropTypes from 'prop-types'
 
 class NotePage extends React.Component{
     static defaultProps = {
@@ -39,3 +40,13 @@ class NotePage extends React.Component{
    }
 
    export default NotePage;
+
+   NotePage.defaultProps = {
+    note: {
+      content: ''
+    }
+  };
+  
+    NotePage.propTypes = {
+      noteId: PropTypes.string
+    };
