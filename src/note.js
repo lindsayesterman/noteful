@@ -56,7 +56,8 @@ export default Note;
 Note.propTypes = {
   modified: PropTypes.string,
   id: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   handleDelete: PropTypes.func
 };
 
