@@ -20,18 +20,19 @@ class NotePage extends React.Component{
     render(){
     const { notes=[], folders=[] } = this.context
     const { noteId } = this.props.match.params
-    const note = findNote(notes, noteId) || { content: '' }
+    const note = findNote(notes, noteId) || { note_content: '' }
     const folder = findFolder(folders, note.folderId) || { h3: ''}
        return(
            <div className="note-page">
             <Note
           id={note.id}
-          name={note.name}
-          modified={note.modified}
+          note_name={note.note_name}
+          note_content={note.note_content}
+          date_created={note.date_created}
           onDeleteNote={this.handleDeleteNote}
         />
-             <h3>{folder.name}</h3>
-          {note.content.split(/\n \r|\n/).map((para, i) =>
+             <h3>{folder.folder_name}</h3>
+          {note.note_content.split(/\n \r|\n/).map((para, i) =>
             <p key={i}>{para}</p>
           )}
         </div>
@@ -43,7 +44,7 @@ class NotePage extends React.Component{
 
    NotePage.defaultProps = {
     note: {
-      content: ''
+      note_content: ''
     }
   };
   

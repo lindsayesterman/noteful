@@ -12,10 +12,10 @@ class AddNote extends React.Component{
     handleNoteSubmit = (e) => {
         e.preventDefault();
         const note  = {
-            name: e.target['noteName'].value,
-            content: e.target['noteContent'].value,
-            folderId: e.target['noteFolder'].value,
-            modified: new Date(),
+            note_name: e.target['noteName'].value,
+            note_content: e.target['noteContent'].value,
+            folder_id: e.target['noteFolder'].value,
+            date_created: new Date(),
         }
         this.setState({error:null})
         fetch(`${config.API_ENDPOINT}/notes`, {
@@ -78,7 +78,7 @@ class AddNote extends React.Component{
                         <option 
                         key={folder.id} 
                         value={folder.id}>
-                            {folder.name}
+                            {folder.folder_name}
                         </option>
                     )}
                     </select>                   

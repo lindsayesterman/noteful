@@ -36,11 +36,11 @@ class Note extends React.Component {
 
 
 render(){
-  const { name, modified } = this.props
+  const { note_name, date_created } = this.props
         return(
             <li className='note'>
-                <h3>{name}</h3>
-                <p>{modified}</p>
+                <h3>{note_name}</h3>
+                <p>{date_created}</p>
                 <button
                  type='button'
                  onClick={this.handleClickDelete}>
@@ -54,10 +54,10 @@ render(){
 export default Note; 
 
 Note.propTypes = {
-  modified: PropTypes.string,
+  date_created: PropTypes.string,
   id: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  note_name: PropTypes.string.isRequired,
+  note_content: PropTypes.string.isRequired,
   handleDelete: PropTypes.func
 };
 

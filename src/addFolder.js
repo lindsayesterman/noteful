@@ -12,7 +12,7 @@ class AddFolder extends React.Component{
     handleFolderSubmit = (e) => {
         e.preventDefault();
         const folder  = {
-            name: e.target['folderName'].value,
+            folder_name: e.target['folderName'].value,
         }
         this.setState({error:null})
         fetch(`${config.API_ENDPOINT}/folders`, {

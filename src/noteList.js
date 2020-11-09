@@ -35,7 +35,7 @@ class NoteList extends React.Component {
   }
 
   Note.propTypes = {
-    bookmarks: PropTypes.arrayOf(PropTypes.object)
+    notes: PropTypes.arrayOf(PropTypes.object)
   };
 
   export default NoteList;
