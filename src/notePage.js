@@ -20,8 +20,8 @@ class NotePage extends React.Component{
     render(){
     const { notes=[], folders=[] } = this.context
     const { noteId } = this.props.match.params
-    const note = findNote(notes, noteId) || { note_content: '' }
-    const folder = findFolder(folders, note.folderId) || { h3: ''}
+    const note = findNote(notes, parseFloat(noteId)) || { note_content: '' }
+    const folder = findFolder(folders, parseFloat(note.folder_id)) || { h3: ''}
        return(
            <div className="note-page">
             <Note
