@@ -79,8 +79,16 @@ class NoteApp extends Component{
       const value = {
         notes: this.state.notes,
         folders: this.state.folders,
-        addFolder: this.addFolder,
-        addNote: this.addNote,
+        addFolder: (folder) => {
+          this.setState({
+            folder
+          })
+        },
+        addNote: (note) => {
+          this.setState({
+            note
+          })
+        },
         deleteNote: this.handleDeleteNote
     };
     
