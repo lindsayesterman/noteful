@@ -137,9 +137,10 @@ class NoteApp extends Component{
                     render={routeProps => {
                         const {folderId} = routeProps.match.params;
                         const notesForFolder = getNotesForFolder(
-                            value.notes,
-                            folderId
+                          value.notes,
+                          parseFloat(folderId)
                         );
+                        console.log(value.notes, folderId, notesForFolder);
                         return (
                           <>
                           <FolderList
