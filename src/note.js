@@ -10,8 +10,7 @@ class Note extends React.Component {
 
   static contextType = NotesContext;
 
-  handleClickDelete = e => {
-    e.preventDefault()
+  handleClickDelete = id => {
     const noteId = this.props.id
 
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
@@ -21,8 +20,10 @@ class Note extends React.Component {
       },
     })
       .then(res => {
-        if (!res.ok)
+        if (!res.ok){
+          console.log(res);
           return res.json().then(e => Promise.reject(e))
+        }
         return res.json()
       })
       .then(() => {

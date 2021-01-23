@@ -17,7 +17,7 @@ class NoteApp extends Component{
         notes: [],
         folders: [],
         error: null
-    };
+    }
 
     componentDidMount() {
       Promise.all([
@@ -47,7 +47,8 @@ class NoteApp extends Component{
       handleDeleteNote = noteId => {
         this.setState({
             notes: this.state.notes.filter(note => note.id !== noteId)
-        });
+        })
+        console.log("handleDeleteNote is called")
     };
 
     setNotes = notes => {
@@ -64,7 +65,8 @@ class NoteApp extends Component{
   
     addNote = note => {
       this.setState({
-        notes: [ ...this.state.notes, note ],
+        note: [ ...this.state.notes, note ],
+        notes: [...this.state.notes, note]
       })
     }
 
@@ -118,8 +120,8 @@ class NoteApp extends Component{
               render={routeProps => {
                   return(
                     <AddNote
-                      folders={value.folders}
                       {...routeProps}
+                      folders={value.folders}
                       /> 
                   )
               }}

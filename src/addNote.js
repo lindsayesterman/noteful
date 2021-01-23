@@ -1,16 +1,16 @@
-import React from 'react';
-import NotesContext from './notesContext';
+import React from 'react'
+import NotesContext from './notesContext'
 import config from './config'
 
 class AddNote extends React.Component{
     state = {
         error: null,
-      };
+      }
 
-    static contextType = NotesContext;
+    static contextType = NotesContext
 
     handleNoteSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const note  = {
             note_name: e.target['noteName'].value,
             note_content: e.target['noteContent'].value,
@@ -45,7 +45,7 @@ class AddNote extends React.Component{
 
     handleClickCancel = () => {
         this.props.history.push('/')
-    };
+    }
 
     render(){
         const { folders=[] } = this.props
@@ -78,7 +78,7 @@ class AddNote extends React.Component{
                         <option 
                         key={folder.id} 
                         value={folder.id}>
-                            {folder.folder_name}
+                        {folder.folder_name}
                         </option>
                     )}
                     </select>                   
@@ -96,4 +96,4 @@ class AddNote extends React.Component{
     }
 }
 
-export default AddNote;
+export default AddNote
