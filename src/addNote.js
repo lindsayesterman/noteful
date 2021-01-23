@@ -37,6 +37,7 @@ class AddNote extends React.Component{
             console.log(data)
             this.context.addNote(data)
             this.props.history.push('/')
+            window.location.href=`/`
         })
         .catch(error=>{
             this.setState({ error })
