@@ -128,10 +128,10 @@ class NoteApp extends Component{
                />
             </NoteError>
               <Route
-                path='/note/:noteId'
+                path='/notes/:noteId'
                 component={NotePage}
                 /> 
-              {['/', '/folder/:folderId'].map(path => (
+              {['/', '/folders/:folderId'].map(path => (
                 <Route
                     exact
                     key={path}
