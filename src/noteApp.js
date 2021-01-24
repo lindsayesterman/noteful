@@ -48,7 +48,6 @@ class NoteApp extends Component{
         this.setState({
             notes: this.state.notes.filter(note => note.id !== noteId)
         })
-        console.log("handleDeleteNote is called")
     };
 
     setNotes = notes => {
@@ -142,7 +141,6 @@ class NoteApp extends Component{
                           value.notes,
                           parseFloat(folderId)
                         );
-                        console.log(value.notes, folderId, notesForFolder);
                         return (
                           <>
                           <FolderList
